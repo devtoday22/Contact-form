@@ -14,20 +14,20 @@ export default function Contact() {
                         <h2>Contact Us</h2>
                         <div className={styles.row}>
                             <div className={styles.formGroup}>
-                                <label htmlFor="first-name">First Name *</label>
+                                <label htmlFor="first-name">First Name <span className={styles.requered}>*</span></label>
                                 <input className={styles.inputField} placeholder="Enter first name" type="text" id="first-name" name="first-name" required />
                             </div>
                             <div className={styles.formGroup}>
-                                <label htmlFor="last-name">Last Name *</label>
+                                <label htmlFor="last-name">Last Name <span className={styles.requered}>*</span></label>
                                 <input className={styles.inputField} placeholder="Enter last name" type="text" id="last-name" name="last-name" required />
                             </div>
                         </div>
                         <div className={styles.formGroup}>
-                            <label htmlFor="email" >Email Address *</label>
+                            <label htmlFor="email" >Email Address <span className={styles.requered}>*</span></label>
                             <input className={styles.inputField} placeholder="Enter email" type="email" id="email" name="email" required />
                         </div>
                         <div className={styles.formGroup}>
-                            <label>Query Type *</label>
+                            <label>Query Type <span className={styles.requered}>*</span></label>
                             <div className={styles.radioGroup}>
                                 <label>
                                     <input className={styles.checkbox} type="radio" name="query-type" value="general-enquiry" required /> General Enquiry
@@ -38,12 +38,12 @@ export default function Contact() {
                             </div>
                         </div>
                         <div className={styles.formGroup}>
-                            <label htmlFor="message">Message *</label>
+                            <label htmlFor="message">Message <span className={styles.requered}>*</span></label>
                             <textarea className={styles.textArea} id="message" name="message" required></textarea>
                         </div>
                         <div className={`${styles.formGroup} ${styles.checkboxGroup}`}>
                             <label>
-                                <input type="checkbox" name="consent" required /> I consent to being contacted by the team *
+                                <input className={styles.checkboxText} type="checkbox" name="consent" required /> I consent to being contacted by the team *
                             </label>
                         </div>
                         <button type="submit" className={styles.submitButton}>Submit</button>
