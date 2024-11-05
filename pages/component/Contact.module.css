@@ -31,7 +31,6 @@
 
 .formGroup {
     flex: 1;
-
 }
 
 .formGroup label {
@@ -67,13 +66,17 @@
     align-items: center;
     font-weight: normal;
     color: #333;
-
 }
 
 .checkboxGroup label {
     display: flex;
     align-items: center;
     color: #333;
+}
+
+.boxText {
+
+    margin-left: 6px;
 }
 
 .submitButton {
@@ -85,14 +88,11 @@
     color: white;
     font-size: 16px;
     cursor: pointer;
-    transition: background-color 0.3s;
 }
 
 .submitButton:hover {
     background-color: #45a049;
 }
-
-
 
 .container {
     display: flex;
@@ -164,16 +164,12 @@
 
     color: hsl(131, 68%, 39%);
     font-size: 14px;
-
 }
 
 
 .radioGroup {
     display: flex;
     gap: 40px;
-
-
-
 }
 
 .radioGroup label {
@@ -186,9 +182,6 @@
     border-radius: 8px;
     width: 100%;
     height: 26px;
-
-
-
 }
 
 
@@ -197,7 +190,6 @@
     align-items: center;
     color: #333;
     padding-right: 8px;
-
 }
 
 .submitButton {
@@ -223,15 +215,43 @@
 @media (max-width: 600px) {
     .row {
         flex-direction: column;
+
+    }
+}
+
+@media (max-width: 600px) {
+    .boxText {
+
+        margin-left: 4px;
+        font-size: 14px;
+        width: 100%;
+        font-weight: normal;
     }
 }
 
 @media (max-width: 600px) {
     .radioGroup label {
 
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 600px) {
+    .radioGroup {
+
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+}
+
+@media (max-width: 600px) {
+    .radioGroup label {
+
+        max-width: 87%;
         border: 1px hsl(186, 15%, 59%) solid;
-        padding: 4px 0 4px 0;
-
-
+        margin: 0;
+        flex-direction: row;
     }
 }

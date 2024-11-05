@@ -43,19 +43,19 @@ export default function Contact() {
                         </div>
                         <div className={`${styles.formGroup} ${styles.checkboxGroup}`}>
                             <label>
-                                <input className={styles.checkboxText} type="checkbox" name="consent" required /> I consent to being contacted by the team *
+                                <input className={styles.checkboxText} type="checkbox" name="consent" required /> <span className={styles.boxText}> consent to being contacted by the team</span>  <span className={styles.requered}>*</span>
                             </label>
                         </div>
                         <button type="submit" className={styles.submitButton}>Submit</button>
                     </form>
-                </div>
+                </div >
 
 
 
 
 
 
-            </main>
+            </main >
 
         </>
     );
