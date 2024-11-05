@@ -30,10 +30,10 @@ export default function Contact() {
                             <label className={styles.query} >Query Type <span className={styles.requered}>*</span></label>
                             <div className={styles.radioGroup}>
                                 <label>
-                                    <input className={styles.checkbox} type="radio" name="query-type" value="general-enquiry" required /> General Enquiry
+                                    <input className={styles.checkbox} type="radio" name="query-type" value="general-enquiry" required /> <span className={styles.queryText}> General Enquiry</span>
                                 </label>
                                 <label>
-                                    <input className={styles.checkbox} type="radio" name="query-type" value="support-request" required /> Support Request
+                                    <input className={styles.checkbox} type="radio" name="query-type" value="support-request" required /> <span className={styles.queryText}> Support Request</span>
                                 </label>
                             </div>
                         </div>
