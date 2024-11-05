@@ -1,19 +1,44 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Head from "next/head";
 import styles from '@/pages/component/Contact.module.css';
 
 export default function Contact() {
     const [isSubmitted, setIsSubmitted] = useState(false);
+    const [firstNameError, setFirstNameError] = useState(false);
+    const [lastNameError, setLastNameError] = useState(false);
+    const [emailError, setEmailError] = useState(false);
+    const [queryTypeError, setQueryTypeError] = useState(false);
+    const [messageError, setMessageError] = useState(false);
+    const [consentError, setConsentError] = useState(false);
 
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        setIsSubmitted(true);
+        // Validate each field
+        const isFirstNameValid = event.target["first-name"].value.trim() !== "";
+        const isLastNameValid = event.target["last-name"].value.trim() !== "";
+        const isEmailValid = event.target.email.value.trim() !== "";
+        const isQueryTypeValid = event.target["query-type"].value !== "";
+        const isMessageValid = event.target.message.value.trim() !== "";
+        const isConsentChecked = event.target.consent.checked;
 
-        // Hide success message after 8 seconds
-        setTimeout(() => {
-            setIsSubmitted(false);
-        }, 8000);
+        // Set error states based on validation
+        setFirstNameError(!isFirstNameValid);
+        setLastNameError(!isLastNameValid);
+        setEmailError(!isEmailValid);
+        setQueryTypeError(!isQueryTypeValid);
+        setMessageError(!isMessageValid);
+        setConsentError(!isConsentChecked);
+
+        // If all fields are valid, show the success message
+        if (isFirstNameValid && isLastNameValid && isEmailValid && isQueryTypeValid && isMessageValid && isConsentChecked) {
+            setIsSubmitted(true);
+
+            // Hide success message after 8 seconds
+            setTimeout(() => {
+                setIsSubmitted(false);
+            }, 8000);
+        }
     };
 
     return (
@@ -23,8 +48,8 @@ export default function Contact() {
             </Head>
             {isSubmitted && (
                 <div className={styles.successMessage}>
-                    Message Sent! <br></br>
-                    tanks for completing the form
+                    Message Sent! <br />
+                    Thank you for completing the form.
                 </div>
             )}
             <main className={styles.main}>
@@ -33,37 +58,69 @@ export default function Contact() {
                         <h2>Contact Us</h2>
                         <div className={styles.row}>
                             <div className={styles.formGroup}>
-                                <label htmlFor="first-name">First Name <span className={styles.requered}>*</span></label>
-                                <input className={styles.inputField} placeholder="Enter first name" type="text" id="first-name" name="first-name" required />
+                                <label htmlFor="first-name">First Name <span className={styles.required}>*</span></label>
+                                <input
+                                    className={`${styles.inputField} ${firstNameError ? styles.errorBorder : ""}`}
+                                    placeholder="Enter first name"
+                                    type="text"
+                                    id="first-name"
+                                    name="first-name"
+                                />
+                                {firstNameError && <span className={styles.errorMessage}>This field is required.</span>}
                             </div>
                             <div className={styles.formGroup}>
-                                <label htmlFor="last-name">Last Name <span className={styles.requered}>*</span></label>
-                                <input className={styles.inputField} placeholder="Enter last name" type="text" id="last-name" name="last-name" required />
+                                <label htmlFor="last-name">Last Name <span className={styles.required}>*</span></label>
+                                <input
+                                    className={`${styles.inputField} ${lastNameError ? styles.errorBorder : ""}`}
+                                    placeholder="Enter last name"
+                                    type="text"
+                                    id="last-name"
+                                    name="last-name"
+                                />
+                                {lastNameError && <span className={styles.errorMessage}>This field is required.</span>}
                             </div>
                         </div>
                         <div className={styles.formGroup}>
-                            <label htmlFor="email">Email Address <span className={styles.requered}>*</span></label>
-                            <input className={styles.inputField} placeholder="Enter email" type="email" id="email" name="email" required />
+                            <label htmlFor="email">Email Address <span className={styles.required}>*</span></label>
+                            <input
+                                className={`${styles.inputField} ${emailError ? styles.errorBorder : ""}`}
+                                placeholder="Enter email"
+                                type="email"
+                                id="email"
+                                name="email"
+                            />
+                            {emailError && <span className={styles.errorMessage}>This field is required.</span>}
                         </div>
                         <div className={styles.formGroup}>
-                            <label className={styles.query}>Query Type <span className={styles.requered}>*</span></label>
+                            <label className={styles.query}>Query Type <span className={styles.required}>*</span></label>
                             <div className={styles.radioGroup}>
                                 <label>
-                                    <input className={styles.checkbox} type="radio" name="query-type" value="general-enquiry" required /> <span className={styles.queryText}> General Enquiry</span>
+                                    <input className={styles.checkbox} type="radio" name="query-type" value="general-enquiry" /> <span className={styles.queryText}> General Enquiry</span>
                                 </label>
                                 <label>
-                                    <input className={styles.checkbox} type="radio" name="query-type" value="support-request" required /> <span className={styles.queryText}> Support Request</span>
+                                    <input className={styles.checkbox} type="radio" name="query-type" value="support-request" /> <span className={styles.queryText}> Support Request</span>
                                 </label>
                             </div>
+                            {queryTypeError && <span className={styles.errorMessage}>Please select a query type.</span>}
                         </div>
                         <div className={styles.formGroup}>
-                            <label htmlFor="message">Message <span className={styles.requered}>*</span></label>
-                            <textarea className={styles.textArea} id="message" name="message" required></textarea>
+                            <label htmlFor="message">Message <span className={styles.required}>*</span></label>
+                            <textarea
+                                className={`${styles.textArea} ${messageError ? styles.errorBorder : ""}`}
+                                id="message"
+                                name="message"
+                            ></textarea>
+                            {messageError && <span className={styles.errorMessage}>This field is required.</span>}
                         </div>
                         <div className={`${styles.formGroup} ${styles.checkboxGroup}`}>
                             <label>
-                                <input className={styles.checkboxText} type="checkbox" name="consent" required /> <span className={styles.boxText}> consent to being contacted by the team</span> <span className={styles.requered}>*</span>
+                                <input
+                                    className={`${styles.checkboxText} ${consentError ? styles.errorBorder : ""}`}
+                                    type="checkbox"
+                                    name="consent"
+                                /> <span className={styles.boxText}>I consent to being contacted by the team</span> <span className={styles.required}>*</span>
                             </label>
+                            {consentError && <span className={styles.errorMessage}>You must consent to being contacted.</span>}
                         </div>
                         <button type="submit" className={styles.submitButton}>Submit</button>
                     </form>
