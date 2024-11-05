@@ -126,7 +126,7 @@
 
 .formGroup {
     flex: 1;
-    margin-top: 14px;
+    margin-top: 12px;
 }
 
 .formGroup label {
@@ -209,6 +209,19 @@
 .submitButton:hover {
     transition: 0.8;
     background-color: #114314;
+}
+
+.successMessage {
+
+    color: white;
+    background-color: hsl(187, 24%, 22%);
+    width: 30%;
+    height: 80px;
+    margin-right: auto;
+    margin-left: auto;
+    border-radius: 8px;
+    text-align: center;
+    padding-top: 20px;
 }
 
 
